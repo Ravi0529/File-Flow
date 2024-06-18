@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
+import Upload from '../assets/upload.svg';
 
 const Dropzone = ({ onDrop }) => {
   const { getRootProps, getInputProps } = useDropzone({
@@ -8,13 +9,21 @@ const Dropzone = ({ onDrop }) => {
   });
 
   return (
-    <div
-      {...getRootProps()}
-      className="flex items-center justify-center border-4 border-dashed border-gray-300 bg-white rounded-lg p-8 w-full max-w-lg mx-auto cursor-pointer"
-    >
-      <input {...getInputProps()} />
-      <p className="text-gray-500">Drag & drop files here, or click to select files</p>
-    </div>
+    <>
+      <div className="flex flex-col items-center justify-center bg-white border-4 border-dashed border-gray-400 rounded-lg p-8 w-full max-w-lg mx-auto cursor-pointer"
+        {...getRootProps()}
+        style={{
+          backgroundImage: `url(${Upload})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'contain',
+          height: '120px',
+        }}
+      >
+        <input {...getInputProps()} />
+      </div>
+        <p className="text-white text-center mt-2">Drag & drop files here, or click to select files</p>
+    </>
   );
 };
 

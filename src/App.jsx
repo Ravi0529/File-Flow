@@ -7,13 +7,47 @@ const App = () => {
     html: [],
     png: [],
     jpg: [],
-    // Add more extensions as needed
+    jpeg: [],
+    gif: [],
+    svg: [],
+    bmp: [],
+    pdf: [],
+    doc: [],
+    docx: [],
+    xls: [],
+    xlsx: [],
+    ppt: [],
+    pptx: [],
+    txt: [],
+    csv: [],
+    json: [],
+    xml: [],
+    mp3: [],
+    wav: [],
+    mp4: [],
+    mov: [],
+    avi: [],
+    mkv: [],
+    zip: [],
+    rar: [],
+    tar: [],
+    gz: [],
+    css: [],
+    js: [],
+    jsx: [],
+    md: [],
+    py: [],
+    c: [],
+    cpp: [],
+    sql: [],
+    ipynb: [],
+    java: []
   });
 
   const handleDrop = (acceptedFiles) => {
     const newFiles = { ...files };
 
-    acceptedFiles.forEach(file => {
+    acceptedFiles.forEach((file) => {
       const extension = file.name.split('.').pop();
       if (newFiles[extension]) {
         newFiles[extension].push(file);
@@ -25,13 +59,17 @@ const App = () => {
     setFiles(newFiles);
   };
 
+  const uploadedFileExtensions = Object.keys(files).filter(
+    (extension) => files[extension].length > 0
+  );
+
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold text-center mb-2">Organize your File-Flow</h1>
-      <p className="text-xl font-semibold text-center mb-8">& Clear the Clutter</p>
+    <div className="min-h-screen bg-[#282929] text-white p-8">
+      <h1 className="text-4xl font-bold text-center mb-3">Organize your File-Flow</h1>
+      <p className="text-xl font-semibold text-center mb-4">& Clear the Clutter</p>
       <Dropzone onDrop={handleDrop} />
-      <div className="flex flex-wrap justify-center mt-8">
-        {Object.keys(files).map(extension => (
+      <div className="flex flex-wrap justify-center mt-8 text-black">
+        {uploadedFileExtensions.map((extension) => (
           <Folder key={extension} extension={extension} files={files[extension]} />
         ))}
       </div>
