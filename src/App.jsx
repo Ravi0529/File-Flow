@@ -152,8 +152,9 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#282929] text-white p-8">
-      <h1 className="text-4xl font-bold text-center mb-3">File Organizer</h1>
-      <p className="text-xl font-semibold text-center mb-4">Organize and Download Your Files</p>
+      <h1 className="text-4xl font-bold text-center mb-3">
+      Organize your File-Flow</h1>
+      <p className="text-xl font-semibold text-center mb-4">Clear the Clutter & Download Your Files</p>
       <Dropzone onDrop={handleDrop} />
       <section className="flex flex-wrap justify-center mt-8 text-black h-72 md:h-full overflow-y-auto">
         {uploadedFileExtensions.map((extension) => (
@@ -165,7 +166,7 @@ const App = () => {
           />
         ))}
       </section>
-      <div className="btn mt-5 w-full flex justify-center">
+      <div className="btn mt-2 w-full flex justify-center">
         <button onClick={handleDownloadZip} className="bg-green-500 text-black px-3 py-1 rounded-lg font-semibold shadow-2xl">Download ZIP</button>
       </div>
     </div>
