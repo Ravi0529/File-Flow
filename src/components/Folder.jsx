@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FileIcon from '../assets/file.svg';
 
-const Folder = ({ extension, files }) => {
+const Folder = ({ extension, files, onDelete }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileClick = (file) => {
@@ -14,6 +14,14 @@ const Folder = ({ extension, files }) => {
 
   const closePreview = () => {
     setSelectedFile(null);
+  };
+
+  const handleDeleteClick = (e, extension, index) => {
+    e.stopPropagation();
+    const confirmDelete = window.confirm(`Are you sure you want to delete ${files[index].name}?`);
+    if (confirmDelete) {
+      onDelete(extension, index);
+    }
   };
 
   const renderFilePreview = (file) => {
@@ -76,11 +84,19 @@ const Folder = ({ extension, files }) => {
         {files.map((file, index) => (
           <li
             key={index}
-            className="text-sm font-medium text-gray-700 cursor-pointer flex items-center"
+            className="text-sm font-medium text-gray-700 cursor-pointer flex items-center justify-between"
             onClick={() => handleFileClick(file)}
           >
-            <img src={FileIcon} alt="File Icon" className="w-4 h-4 mr-2" />
-            {file.name}
+            <div className="flex items-center">
+              <img src={FileIcon} alt="File Icon" className="w-4 h-4 mr-2" />
+              {file.name}
+            </div>
+            <button
+              onClick={(e) => handleDeleteClick(e, extension, index)}
+              className="text-red-500 ml-2"
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
